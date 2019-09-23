@@ -82,6 +82,18 @@
             return answer;
         }
         document.writeln('/', solution(4, 12));
+
+        //문자열 다루기 기본
+        function Solution(s) {
+            const answer = false;
+            if (!isNaN(s) && s.indexOf('e') === -1) {
+                if (s.split('').length === 4 || s.split('').length === 6)
+                    return true;
+            }
+            return answer;
+        }
+        document.writeln('/문자열 다루기 기본', Solution('a1123'));
+        document.writeln('/', Solution('1123'));
     </script>
 </body>
 
