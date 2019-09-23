@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS Algorithm</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 3의 배수, 5의 배수
+        function threeOrFive(num) {
+            for (let i = 1; i <= num; i++) {
+                if (i % 15 === 0) document.writeln('ThreeOrFive');
+                else if (i % 3 === 0) document.writeln('Three');
+                else if (i % 5 === 0) document.writeln('Five');
+                else document.writeln(i);
+            }
+        }
+        threeOrFive(30);
+
+        //Big O
+        function log(arr) {
+            document.writeln('/', arr[0]);
+            document.writeln(arr[1]);
+        }
+        // log배열 크기에 상관없이 첫번째와 두번째 값을 보여줌.
+        // 0(n)은 입력되는 데이터의 양에 따라 처리시간 증가를 나타냄.
+        log([1, 2, 3]);
+        log([1, 2, 3, 4, 5, 6]);
+
+        /** Harmless Random Note
+            두개의 파라미터로 전달되는 문자열 중 중복되는 문자열의 유무를 파악 후
+            true, false로 변환
+            forEach()메소드를 사용하여 배열 요소마다 한 번씩 제공한 함수 실행. **/
+        function HarmlessRandomNote(noteText, magazineText) {
+            let noteArr = noteText.split('');
+            let magazineArr = magazineText.split('');
+            let magazineObj = {};
+
+            magazineArr.forEach(word => {
+                if (!magazineObj[word]) magazineObj[word] = 0;
+                magazineObj[word]++;
+            });
+
+            const noteIsPossible = true;
+            noteArr.forEach(word => {
+                if (magazineObj[word]) {
+                    magazineObj[word]--;
+                    if (magazineObj[word] < 0) noteIsPossible = false;
+                }
+                else noteIsPossible = false;
+            });
+            return noteIsPossible;
+        }
+        HarmlessRandomNote('', '');
+        document.write('/', HarmlessRandomNote('', ''));
+
+
+        //2016년
+        function solution(a, b) {
+            let answer = '';
+            let sum = 0;
+            const months = ['31', '29', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
+            const days = ['THU', 'FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED'];
+
+            function sumMonths(a) {
+                if (a === 0) return 0;
+                return months.slice(0, a - 1).reduce(function (acc, cur) {
+                    //배열의 값을 합칠 때, reduce 메소드 사용
+                    return acc + cur;
+                })
+            }
+            function findDay() {
+                for (let i = 0; i < days.length; i++) {
+                    return days[sum % 7]
+                }
+            }
+            let month = sumMonths(a);
+            sum = month + b;
+            answer = findDay();
+
+            return answer;
+        }
+        document.writeln('/', solution(4, 12));
+    </script>
+</body>
+
+</html>
